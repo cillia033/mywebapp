@@ -1,9 +1,5 @@
 import streamlit as st
 
-st.title("첫 배포 확인 👋")
-st.write("여기까지 보이면 배포 성공입니다.")
-import streamlit as st
-
 st.set_page_config(page_title="MBTI 여행지 추천", page_icon="✈️")
 
 st.title("✈️ MBTI 여행지 추천")
