@@ -1,81 +1,51 @@
 import streamlit as st
-import random
 
 st.set_page_config(
-    page_title="F1 응원팀 추천기",
+    page_title="MBTI F1 추천기",
     page_icon="🏎️"
 )
 
-st.title("🏎️ F1 응원 선수 & 팀 랜덤 추천")
-st.write("버튼을 눌러 이번 시즌 응원할 선수를 찾아보세요!")
+st.title("🏎️ MBTI 기반 F1 응원 추천")
+st.write("MBTI를 선택하면 어울리는 F1 선수와 팀을 추천해드립니다.")
 
-drivers = [
-    "Max Verstappen",
-    "Isack Hadjar",
-    "Lando Norris",
-    "Oscar Piastri",
-    "Charles Leclerc",
-    "Lewis Hamilton",
-    "George Russell",
-    "Kimi Antonelli",
-    "Fernando Alonso",
-    "Lance Stroll",
-    "Carlos Sainz",
-    "Alexander Albon",
-    "Pierre Gasly",
-    "Franco Colapinto",
-    "Esteban Ocon",
-    "Oliver Bearman",
-    "Nico Hulkenberg",
-    "Gabriel Bortoleto",
-    "Liam Lawson",
-    "Arvid Lindblad",
-    "Sergio Perez",
-    "Valtteri Bottas"
-]
+recommendations = {
+    "INTJ": ("Max Verstappen", "Red Bull Racing", "분석적이고 목표 지향적인 전략가 타입"),
+    "INTP": ("Oscar Piastri", "McLaren", "논리적이고 침착하게 상황을 분석하는 타입"),
+    "ENTJ": ("Lewis Hamilton", "Ferrari", "강한 리더십과 승부욕을 가진 타입"),
+    "ENTP": ("Fernando Alonso", "Aston Martin", "창의적이고 예측 불가능한 전략가 타입"),
 
-teams = [
-    "Red Bull Racing",
-    "McLaren",
-    "Ferrari",
-    "Mercedes",
-    "Aston Martin",
-    "Williams",
-    "Alpine",
-    "Haas",
-    "Audi",
-    "Racing Bulls",
-    "Cadillac"
-]
+    "INFJ": ("Charles Leclerc", "Ferrari", "이상과 열정을 추구하는 타입"),
+    "INFP": ("Alexander Albon", "Williams", "진정성과 성장을 중시하는 타입"),
+    "ENFJ": ("Lando Norris", "McLaren", "사람들과 잘 어울리고 긍정적인 타입"),
+    "ENFP": ("Daniel Ricciardo", "RB", "에너지 넘치고 자유로운 분위기의 타입"),
 
-team_descriptions = {
-    "Red Bull Racing": "공격적인 전략과 챔피언 DNA",
-    "McLaren": "최근 최상위권 경쟁팀",
-    "Ferrari": "F1의 전설적인 명문팀",
-    "Mercedes": "기술력과 안정성의 상징",
-    "Aston Martin": "도약을 노리는 야심가",
-    "Williams": "역사 깊은 명가",
-    "Alpine": "프랑스 워크스 팀",
-    "Haas": "미국 대표 F1 팀",
-    "Audi": "새 시대를 여는 제조사",
-    "Racing Bulls": "유망주 육성 명가",
-    "Cadillac": "신규 참가팀"
+    "ISTJ": ("George Russell", "Mercedes", "성실하고 체계적인 타입"),
+    "ISFJ": ("Carlos Sainz", "Williams", "꾸준하고 신뢰를 주는 타입"),
+    "ESTJ": ("Toto Wolff", "Mercedes", "조직을 이끄는 관리자형"),
+    "ESFJ": ("Pierre Gasly", "Alpine", "팀워크와 관계를 중시하는 타입"),
+
+    "ISTP": ("Kimi Antonelli", "Mercedes", "실용적이고 냉철한 문제 해결형"),
+    "ISFP": ("Yuki Tsunoda", "Red Bull Racing", "자유롭고 개성 있는 타입"),
+    "ESTP": ("Liam Lawson", "Racing Bulls", "도전과 경쟁을 즐기는 타입"),
+    "ESFP": ("Franco Colapinto", "Alpine", "활발하고 즐거움을 추구하는 타입")
 }
 
-if st.button("🎲 랜덤 추천 받기"):
-    driver = random.choice(drivers)
-    team = random.choice(teams)
+mbti = st.selectbox(
+    "MBTI를 선택하세요",
+    list(recommendations.keys())
+)
 
-    st.success("추천 완료!")
+if st.button("🏁 추천받기"):
+    driver, team, reason = recommendations[mbti]
 
-    st.subheader("👨‍✈️ 추천 선수")
-    st.write(driver)
+    st.subheader("👨‍✈️ 추천 드라이버")
+    st.success(driver)
 
-    st.subheader("🏁 추천 팀")
-    st.write(team)
+    st.subheader("🏎️ 추천 팀")
+    st.success(team)
 
-    st.info(team_descriptions[team])
+    st.subheader("💡 추천 이유")
+    st.write(reason)
 
 st.divider()
-
-st.caption("마음에 안 들면 다시 돌리세요 😎")
+st.caption("※ 재미로 보는 추천입니다.")
